@@ -1,0 +1,117 @@
+<% layout("/layouts/boilerplate.ejs") %>
+<body>
+  <h1 class="edit">Edit Listing</h1>
+  <form method="POST" action="/listings/<%= listing._id %>?_method=PUT" novalidate class="needs-validation">
+    <div class="mb-2">
+      <label for="title" class="form-label">Title</label>
+      <input
+        type="text"
+        value="<%= listing.title %>"
+        name="title"
+        id="title"
+        class="form-control"
+        required
+      />
+      <div class="valid-feedback">
+        Title Looks good!
+      </div>
+      <div class="invalid-feedback">
+        This Field Is Required
+      </div>
+    </div>
+
+    <div class="mb-2">
+      <label for="description" class="form-label">Description</label>
+      <textarea
+        class="form-control"
+        id="description"
+        name="description"
+        value="<%= listing.description %>"
+        required
+      >
+<%= listing.description %></textarea
+      >
+      <div class="valid-feedback">
+        Description Looks good!
+      </div>
+      <div class="invalid-feedback">
+        This Field Is Required
+      </div>
+    </div>
+
+    <div class="mb-2">
+      <label for="image" class="form-label">Image</label>
+      <input
+        id="image"
+        type="text"
+        value="<%= listing.image %>"
+        name="image"
+        class="form-control"
+        required
+      />
+      <div class="valid-feedback">
+        Image Link Looks good!
+      </div>
+      <div class="invalid-feedback">
+        This Field Is Required
+      </div>
+    </div>
+
+    <div class="row offset-2">
+      <div class="col-3 mb-3">
+        <label for="price" class="form-label">Price</label>
+        <input
+          id="price"
+          class="form-control"
+          type="number"
+          value="<%= listing.price %>"
+          name="price"
+          required
+        />
+        <div class="valid-feedback">
+          Price Looks good!
+        </div>
+        <div class="invalid-feedback">
+          This Field Is Required
+        </div>
+      </div>
+
+      <div class="col-3 mb-3">
+        <label for="location" class="form-label">Location</label>
+        <input
+          id="location"
+          class="form-control"
+          type="text"
+          value="<%= listing.location %>"
+          name="location"
+          required
+        />
+        <div class="valid-feedback">
+          Location Looks good!
+        </div>
+        <div class="invalid-feedback">
+          This Field Is Required
+        </div>
+      </div>
+
+      <div class="col-3 mb-3">
+        <label for="country" class="form-label">Country</label>
+        <input
+          id="country"
+          class="form-control"
+          type="text"
+          value="<%= listing.country %>"
+          name="country"
+          required
+        />
+        <div class="valid-feedback">
+          Country Looks good!
+        </div>
+        <div class="invalid-feedback">
+          This Field Is Required
+        </div>
+      </div>
+    </div>
+    <button class="mt-4 btn btn-dark">EDIT</button>
+  </form>
+</body>

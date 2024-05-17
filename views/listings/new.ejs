@@ -1,0 +1,114 @@
+<% layout("/layouts/boilerplate.ejs") %>
+<body>
+  <h1 class="heading">Create New Listings</h1>
+  <form method="POST" action="/listings" novalidate class="needs-validation">
+    <div class="row">
+      <div class="col-8 offset-2">
+        <div class="mb-2">
+          <label for="title" class="form-label">Enter Title</label>
+          <input
+            id="title"
+            type="text"
+            placeholder="Enter title"
+            name="title"
+            class="form-control"
+            required
+          />
+          <div class="valid-feedback">
+            Title Looks good!
+          </div>
+          <div class="invalid-feedback">
+            This Field Is Required
+          </div>
+        </div>
+      </div>
+
+      <div class="col-8 offset-2">
+        <div class="mb-2">
+          <label for="description" class="form-label mb-2"></label>
+          <textarea
+            id="description"
+            name="description"
+            placeholder="Enter Description"
+            class="form-control"
+            required
+          ></textarea
+          >
+          <div class="valid-feedback">
+            Description Looks good!
+          </div>
+          <div class="invalid-feedback">
+            This Field Is Required
+          </div>
+        </div>
+      </div>
+      <div class="col-8 offset-2">
+        <div class="mb-2">
+          <label for="image" class="form-label mb-2">Image Link/Url</label>
+          <input
+            id="image"
+            class="form-control"
+            type="text"
+            placeholder="Enter image link / url"
+            name="image"
+          />
+        </div>
+      </div>
+      <div class="row offset-3">
+        <div class="col-2">
+          <label for="price" class="form-label mb-2">Enter Price</label>
+          <input
+            id="price"
+            placeholder="Enter price"
+            name="price"
+            class="form-control"
+            required
+          />
+          <div class="valid-feedback">
+            Price Looks good!
+          </div>
+          <div class="invalid-feedback">
+            This Field Is Required
+          </div>
+        </div>
+        <div class="col-2">
+          <label for="location" class="form-label mb-2">Enter Location</label>
+          <input
+            id="location"
+            class="form-control"
+            type="text"
+            placeholder="Enter location"
+            name="location"
+            required
+          />
+          <div class="valid-feedback">
+            Location Looks good!
+          </div>
+          <div class="invalid-feedback">
+            This Field Is Required
+          </div>
+        </div>
+        <div class="col-2">
+          <label for="country" class="form-label mb-2">Enter Country</label>
+          <input
+            id="country"
+            type="text"
+            placeholder="Enter country"
+            name="country"
+            class="form-control"
+            required
+          />
+          <div class="valid-feedback">
+            Country Looks good!
+          </div>
+          <div class="invalid-feedback">
+            This Field Is Required
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="div-btn">
+      <button class="btn btn-dark mt-4">ADD</button>
+    </div>
+  </form>
+</body>
