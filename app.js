@@ -7,6 +7,9 @@ const ejsMate = require("ejs-mate");
 const ExpressError = require("./utils/ExpressError");
 const session = require("express-session");
 const flash = require('connect-flash');
+const passport = require('passport');
+const LocalStategy = require('passport-local');
+const User = require('./models/user.js')
 
 const sessionOptions = {
   secret: "mysecretcode",
@@ -22,8 +25,24 @@ const sessionOptions = {
 app.use(session(sessionOptions));
 app.use(flash());
 
-const listings = require("./routes/listings.js");
-const reviews = require("./routes/reviews.js");
+//passport and flash requires session
+
+//passport initialized
+app.use(passport.initialize());
+//request should know which o session's part it is
+app.use(passport.session());
+
+//inside passport new users should be authanticated through LocalStategy and each user should be authanticate by User.authanticate() (login,sing-up)
+passport.use(new LocalStategy(User.authenticate()))
+
+//user realted info stored in a session so user does not require to login multiple time in a session
+passport.serializeUser(User.serializeUser());
+//after session ends unstore the user info from the session
+passport.deserializeUser(User.deserializeUser());
+
+const listingRouter= require("./routes/listings.js");
+const reviewRouter = require("./routes/reviews.js");
+const userRouter = require("./routes/user.js")
 
 app.use(methodOverride("_method"));
 
@@ -50,8 +69,9 @@ app.use((req,res,next)=>{
   next();
 })
 
-app.use("/listings", listings);
-app.use("/listings/:id/reviews", reviews);
+app.use("/listings", listingRouter);
+app.use("/listings/:id/reviews", reviewRouter);
+app.use('/',userRouter)
 
 app.all("*", (req, res, next) => {
   next(new ExpressError(404, "Page Not Found"));

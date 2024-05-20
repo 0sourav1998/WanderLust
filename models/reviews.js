@@ -2,7 +2,7 @@ const { date } = require("joi");
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema ;
 
-const reviewSchema = mongoose.Schema({
+const reviewSchema = new Schema({
     ratings : {
         type : Number,
         min : 1 ,
