@@ -4,6 +4,7 @@ const asyncWrap = require("../utils/wrapAsync");
 const {schemaValidate} = require("../shcemaValidate");
 const ExpressError = require("../utils/ExpressError");
 const Listing = require("../models/listing");
+const {isLoggedIn} = require('../middleware.js')
 
 
 const validateListing = (req,res,next)=>{
@@ -26,11 +27,11 @@ router.get("/", asyncWrap(async (req, res) => {
     res.render("listings/index.ejs", { allListings });
   }));
   
-  router.get("/new", (req, res) => {
+  router.get("/new",isLoggedIn ,(req, res) => {
     res.render("listings/new.ejs");
   });
 
-  router.post("/", validateListing, asyncWrap(async (req, res) => {
+  router.post("/",isLoggedIn, validateListing, asyncWrap(async (req, res) => {
     const { title, description, image, price, location, country } = req.body;
     const newListing = new Listing({
       title,
@@ -55,7 +56,7 @@ router.get("/", asyncWrap(async (req, res) => {
     res.render("listings/show.ejs", { listing });
   }));
   
-  router.get("/:id/edit",asyncWrap(async(req,res)=>{
+  router.get("/:id/edit",isLoggedIn,asyncWrap(async(req,res)=>{
       let { id } = req.params;
       let listing = await Listing.findById(id);
       if(!listing){
@@ -65,7 +66,7 @@ router.get("/", asyncWrap(async (req, res) => {
       res.render("listings/edit.ejs",{listing})
   }));
   
-  router.put("/:id", validateListing, asyncWrap(async (req, res) => {
+  router.put("/:id",isLoggedIn, validateListing, asyncWrap(async (req, res) => {
     const { id } = req.params;
     const { title, description, image, price, location, country } = req.body;
     await Listing.findByIdAndUpdate(id, { 
@@ -80,7 +81,7 @@ router.get("/", asyncWrap(async (req, res) => {
     res.redirect("/listings");
   }));
   
-  router.delete("/:id",asyncWrap(async(req,res)=>{
+  router.delete("/:id",isLoggedIn,asyncWrap(async(req,res)=>{
       let {id} = req.params ;
       await Listing.findByIdAndDelete(id) ;
       req.flash('success', 'Listing Deleted');

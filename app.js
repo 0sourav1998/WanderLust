@@ -66,6 +66,8 @@ async function main() {
 app.use((req,res,next)=>{
   res.locals.successMsg = req.flash('success');
   res.locals.errorMsg = req.flash('error')
+  // we have to use locals bcz the access of req.user is not available in navbar
+  res.locals.user = req.user ;
   next();
 })
 

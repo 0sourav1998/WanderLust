@@ -9,8 +9,17 @@
           <a class="nav-link"  href="/">Home</a>
           <a class="nav-link" href="/listings">All Listings</a>
           <a class="nav-link" href="/listings/new">Create New Listings</a>
-          
         </div>
+        <div class="navbar-nav ms-auto">
+          <% if(!user){ %>
+            <a class="nav-link" href="/login">Login</a>
+          <a class="nav-link" href="/Signup">Signup</a>
+          <% } %>
+          <% if(user){ %>
+          <a class="nav-link" href="/logout">Logout</a>
+          <% } %>
+        </div>
+
       </div>
     </div>
   </nav>
