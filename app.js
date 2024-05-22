@@ -68,6 +68,7 @@ app.use((req,res,next)=>{
   res.locals.errorMsg = req.flash('error')
   // we have to use locals bcz the access of req.user is not available in navbar
   res.locals.user = req.user ;
+  console.log(res.locals.user)
   next();
 })
 

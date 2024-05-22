@@ -15,6 +15,7 @@ async function mian() {
 
 async function initDB(){
     await Listing.deleteMany({});
+    initData.data = initData.data.map((obj)=>({...obj,owner :"664d8ab35c2ad5da49d84ebc"}))
     await Listing.insertMany(initData.data)
 }
 

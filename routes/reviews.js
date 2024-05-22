@@ -4,28 +4,21 @@ const ExpressError = require("../utils/ExpressError");
 const asyncWrap = require("../utils/wrapAsync");
 const Listing = require("../models/listing");
 const Reviews = require("../models/reviews");
-const {reviewValidate} = require("../shcemaValidate");
+const {reviewValidation , isLoggedIn , isAuthor} = require('../middleware.js')
 
 
 
-const reviewValidation = (req,res,next)=>{
-    const result = reviewValidate.validate({ reviews: req.body });
-    if(result.error){
-      throw new ExpressError(401,result.error)
-    }else{
-      next();
-    }
-  }
 
 //reviews 
 //POST route
 
-router.post("/",reviewValidation,asyncWrap(async(req,res)=>{
+router.post("/",isLoggedIn,reviewValidation,asyncWrap(async(req,res)=>{
     let listings = await Listing.findById(req.params.id) ;
     let newReview = new Reviews({
       ratings : req.body.ratings ,
       comments : req.body.comments 
-    })
+    });
+    newReview.author = req.user._id ;
     listings.reviews.push(newReview) ;
     await newReview.save();
     await listings.save();
@@ -35,7 +28,7 @@ router.post("/",reviewValidation,asyncWrap(async(req,res)=>{
   
   //delete review
   
-  router.delete("/:reviewID",asyncWrap(async(req,res)=>{
+  router.delete("/:reviewID",isAuthor,asyncWrap(async(req,res)=>{
     let {id , reviewID} = req.params ;
     console.log("ID :" , id , "REVIEW ID :" , reviewID) ;
     await Reviews.findByIdAndDelete(reviewID);

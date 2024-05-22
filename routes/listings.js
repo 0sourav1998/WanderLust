@@ -1,22 +1,10 @@
 const express = require("express");
 const router = express.Router() ;
 const asyncWrap = require("../utils/wrapAsync");
-const {schemaValidate} = require("../shcemaValidate");
-const ExpressError = require("../utils/ExpressError");
 const Listing = require("../models/listing");
-const {isLoggedIn} = require('../middleware.js')
+const {isLoggedIn , isOwner} = require('../middleware.js')
+const {validateListing} = require('../middleware.js')
 
-
-const validateListing = (req,res,next)=>{
-    const { title, description, image, price, location, country } = req.body;
-    const result = schemaValidate.validate({ listing: req.body });
-    if(result.error){
-      throw new ExpressError(401,result.error)
-    }else{
-      next();
-    }
-  }
-  
 
 router.get("/", asyncWrap(async (req, res) => {
     const allListings = await Listing.find();
@@ -41,6 +29,7 @@ router.get("/", asyncWrap(async (req, res) => {
       location,
       country,
     });
+    newListing.owner = req.user._id ;
     await newListing.save();
     req.flash('success', 'New Listing Was Created');
     res.redirect("/listings");
@@ -48,7 +37,7 @@ router.get("/", asyncWrap(async (req, res) => {
   
   router.get("/:id", asyncWrap(async (req, res) => {
     let { id } = req.params;
-    let listing = await Listing.findById(id).populate("reviews");
+    let listing = await Listing.findById(id).populate({path : "reviews" , populate :{path : "author"}}).populate("owner");
     if(!listing){
       req.flash('error','Listings You are trying to Find does not Exists!');
       return res.redirect('/listings')
@@ -56,7 +45,7 @@ router.get("/", asyncWrap(async (req, res) => {
     res.render("listings/show.ejs", { listing });
   }));
   
-  router.get("/:id/edit",isLoggedIn,asyncWrap(async(req,res)=>{
+  router.get("/:id/edit",isLoggedIn,isOwner,asyncWrap(async(req,res)=>{
       let { id } = req.params;
       let listing = await Listing.findById(id);
       if(!listing){
@@ -81,7 +70,7 @@ router.get("/", asyncWrap(async (req, res) => {
     res.redirect("/listings");
   }));
   
-  router.delete("/:id",isLoggedIn,asyncWrap(async(req,res)=>{
+  router.delete("/:id",isLoggedIn,isOwner,asyncWrap(async(req,res)=>{
       let {id} = req.params ;
       await Listing.findByIdAndDelete(id) ;
       req.flash('success', 'Listing Deleted');
