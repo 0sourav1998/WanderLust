@@ -40,7 +40,19 @@
     <form action="/listings/<%= listing._id %>/reviews" method="POST" novalidate class="needs-validation">
       <div class="mb-2">
         <label for="rating" class="form-label">Ratings</label>
-        <input type="range" class="form-range" min="1" max="5" id="rating" name="ratings">
+         <fieldset class="starability-slot">
+    <input type="radio" id="no-rate" class="input-no-rate" name="ratings" value="1" checked aria-label="No rating." />
+    <input type="radio" id="first-rate1" name="ratings" value="1" />
+    <label for="first-rate1" title="Terrible">1 star</label>
+    <input type="radio" id="first-rate2" name="ratings" value="2" />
+    <label for="first-rate2" title="Not good">2 stars</label>
+    <input type="radio" id="first-rate3" name="ratings" value="3" />
+    <label for="first-rate3" title="Average">3 stars</label>
+    <input type="radio" id="first-rate4" name="ratings" value="4" />
+    <label for="first-rate4" title="Very good">4 stars</label>
+    <input type="radio" id="first-rate5" name="ratings" value="5" />
+    <label for="first-rate5" title="Amazing">5 stars</label>
+  </fieldset>
       </div>
       <div class="mb-2">
         <label for="comments" "form-label">Comments</label>
@@ -57,9 +69,11 @@
     <% for (let review of listing.reviews) { %>
         <div class="card col-md-4">
         <div class="card-body review-border">
+          <div></div>
            <h3>@<%= review.author.username %></h3>
+           <p class="starability-result ratings" data-rating="<%=review.ratings %>"> Rated
+          </p>
           <p class="card-text"><%= review.comments %></p>
-          <h5 class="card-title">Rating: <%= review.ratings %> &#9734;</h5>
           <form method="POST" action="/listings/<%= listing._id %>/reviews/<%= review._id %>?_method=DELETE">
             <button class="review-btn m-2">Delete This Review</button>
           </form>
