@@ -1,7 +1,7 @@
 <% layout("/layouts/boilerplate.ejs") %>
 <body>
   <h1 class="heading">Create New Listings</h1>
-  <form method="POST" action="/listings" novalidate class="needs-validation">
+  <form method="POST" action="/listings" novalidate class="needs-validation" enctype="multipart/form-data">
     <div class="row">
       <div class="col-8 offset-2">
         <div class="mb-2">
@@ -44,11 +44,11 @@
       </div>
       <div class="col-8 offset-2">
         <div class="mb-2">
-          <label for="image" class="form-label mb-2">Image Link/Url</label>
+          <label for="image" class="form-label mb-2">Upload Image</label>
           <input
             id="image"
             class="form-control"
-            type="text"
+            type="file"
             placeholder="Enter image link / url"
             name="image"
           />
