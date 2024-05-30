@@ -119,3 +119,6 @@ nav {
 .ratings{
   margin : auto;
 }
+
+/* Map */
+#map { height: 400px; width: 90vh; }

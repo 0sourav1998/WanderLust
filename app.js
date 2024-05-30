@@ -1,7 +1,6 @@
 if(process.env.NODE_ENV != "production"){
   require('dotenv').config();
 }
-console.log(process.env.API_KEY)
 
 const express = require("express");
 const app = express();
@@ -73,7 +72,6 @@ app.use((req,res,next)=>{
   res.locals.errorMsg = req.flash('error')
   // we have to use locals bcz the access of req.user is not available in navbar
   res.locals.user = req.user ;
-  console.log(res.locals.user)
   next();
 })
 

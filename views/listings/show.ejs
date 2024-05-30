@@ -63,23 +63,45 @@
   </div>
   <% } %>
   <hr>
-  <div class="mt-3">
-    <h2>All Reviews</h2>
-    <div class="row">
-    <% for (let review of listing.reviews) { %>
-        <div class="card col-md-4">
-        <div class="card-body review-border">
-          <div></div>
-           <h3>@<%= review.author.username %></h3>
-           <p class="starability-result ratings" data-rating="<%=review.ratings %>"> Rated
-          </p>
-          <p class="card-text"><%= review.comments %></p>
-          <form method="POST" action="/listings/<%= listing._id %>/reviews/<%= review._id %>?_method=DELETE">
-            <button class="review-btn m-2">Delete This Review</button>
-          </form>
+  <% if(listing.reviews.length >0){ %>
+    <div class="mt-3">
+      <h2>All Reviews</h2>
+      <div class="row">
+      <% for (let review of listing.reviews) { %>
+          <div class="card col-md-4">
+          <div class="card-body review-border">
+            <div></div>
+             <h3>@<%= review.author.username %></h3>
+             <p class="starability-result ratings" data-rating="<%=review.ratings %>"> Rated
+            </p>
+            <p class="card-text"><%= review.comments %></p>
+            <form method="POST" action="/listings/<%= listing._id %>/reviews/<%= review._id %>?_method=DELETE">
+              <button class="review-btn m-2">Delete This Review</button>
+            </form>
+          </div>
         </div>
-      </div>
-    <% } %>
+      <% } %>
+    </div>
+  <% } %>
+  
+  <h4 class="col-8 offset-5">Where You Will Be</h4>
+  <div class="col-8 offset-3">
+    <div id="map"></div>
+    <script>
+      mapboxgl.accessToken = 'pk.eyJ1Ijoic291cmF2LWJoYXR0YWNoZXJqZWUiLCJhIjoiY2x3dGU0bG9mMDF2ZDJpc2FhaG1sM3JsMCJ9.fG5nnDwIwBHNb0jXz-RAZQ';
+        const map = new mapboxgl.Map({
+            container: 'map', // container ID
+            // style: 'mapbox://styles/mapbox/streets-v11', // map style
+            center: ['<%= coordinates[0] %>' , '<%= coordinates[1] %>'] , // starting position [lng, lat]
+            zoom: 9 // starting zoom
+        });
+        // Set marker options.
+const marker = new mapboxgl.Marker({
+    color: "red",
+    draggable: true
+}).setLngLat(['<%= coordinates[0] %>' , '<%= coordinates[1] %>'])
+    .addTo(map);
+    </script>    
   </div>
   </div>
 </body>

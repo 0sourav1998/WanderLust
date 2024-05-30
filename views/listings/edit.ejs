@@ -1,7 +1,7 @@
 <% layout("/layouts/boilerplate.ejs") %>
 <body>
   <h1 class="edit">Edit Listing</h1>
-  <form method="POST" action="/listings/<%= listing._id %>?_method=PUT" novalidate class="needs-validation">
+  <form method="POST" action="/listings/<%= listing._id %>?_method=PUT" novalidate class="needs-validation" enctype="multipart/form-data">
     <div class="mb-2">
       <label for="title" class="form-label">Title</label>
       <input
@@ -38,16 +38,18 @@
         This Field Is Required
       </div>
     </div>
-
+    <div>
+      <h6>Image Preview</h6>
+      <img src="<%= originalImageURl %>" width="300" height="200">
+    </div>
     <div class="mb-2">
-      <label for="image" class="form-label">Image</label>
+      <label for="image" class="form-label">Upload Image</label>
       <input
         id="image"
-        type="text"
+        type="file"
         value="<%= listing.image %>"
         name="image"
         class="form-control"
-        required
       />
       <div class="valid-feedback">
         Image Link Looks good!
