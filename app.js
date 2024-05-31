@@ -21,7 +21,7 @@ const Mongo_Url = process.env.Mongo_DB_Url ;
 const Mongo_Store = MongoStore.create({
   mongoUrl : Mongo_Url ,
   crypto: {
-    secret: SECRET
+    secret: process.env.SECRET
   },
   touchAfter : 24 * 3600 
 }) ;
