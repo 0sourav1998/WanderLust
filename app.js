@@ -10,13 +10,29 @@ const methodOverride = require("method-override");
 const ejsMate = require("ejs-mate");
 const ExpressError = require("./utils/ExpressError");
 const session = require("express-session");
+const MongoStore = require('connect-mongo');
 const flash = require('connect-flash');
 const passport = require('passport');
 const LocalStategy = require('passport-local');
 const User = require('./models/user.js')
 
+const Mongo_Url = process.env.Mongo_DB_Url ;
+
+const Mongo_Store = MongoStore.create({
+  mongoUrl : Mongo_Url ,
+  crypto: {
+    secret: SECRET
+  },
+  touchAfter : 24 * 3600 
+}) ;
+
+Mongo_Store.on("error",()=>{
+  console.log("Some Error Occured",err)
+})
+
 const sessionOptions = {
-  secret: "mysecretcode",
+  Mongo_Store,
+  secret: process.env.SECRET,
   resave: false,
   saveUninitialized: true,
   cookie: {
@@ -25,6 +41,8 @@ const sessionOptions = {
     httpOnly: true
   },
 };
+
+
 
 app.use(session(sessionOptions));
 app.use(flash());
@@ -56,7 +74,7 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(express.urlencoded({ extended: true }));
 app.engine("ejs", ejsMate);
 
-const Mongo_Url = "mongodb://127.0.0.1:27017/wanderlust";
+// const Mongo_Url = "mongodb://127.0.0.1:27017/wanderlust";
 
 main()
   .then((res) => {
