@@ -114,7 +114,7 @@ nav {
   padding: 5px;
 }
 .review-btn{
-  background-color: red;
+  background-color: #ff9b9b;
 }
 .ratings{
   margin : auto;
@@ -122,3 +122,57 @@ nav {
 
 /* Map */
 #map { height: 400px; width: 90vh; }
+
+.main-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.filters{
+  margin-right: 2rem;
+}
+
+.filter{
+  text-align: center;
+  opacity: 0.7;
+}
+
+.filter:hover{
+  opacity: 1;
+  cursor: pointer;
+}
+
+.form-switch{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid black;
+  border-radius: 0.5rem;
+  height: 3rem;
+  padding-right: 2.5rem;
+  padding-top: 0.5rem;
+}
+
+.tax-info{
+  display: none;
+}
+
+.d-flex{
+  margin :auto ;
+}
+
+.btn-search i{
+  display: inline;
+}
+
+.btn-search{
+  background-color: #ff9b9b;
+  color: white;
+  border-radius: 25px;
+  padding: 0.5rem 1.5rem 0.5rem 1.5rem;
+}
+.search-inp{
+  border-radius: 25px !important;
+  padding: 0.5rem 3rem 0.5rem 3rem !important;
+}
