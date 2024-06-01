@@ -57,11 +57,7 @@
     checkedBox.addEventListener("click",()=>{
       let taxInfo = document.getElementsByClassName('tax-info') ;
       for(let tax of taxInfo){
-        if (tax.style.display === 'none' || tax.style.display === '') {
-          tax.style.display = 'inline';
-        } else {
-          tax.style.display = 'none';
-        }
+        tax.style.display = (tax.style.display === 'none' || tax.style.display === '') ? 'inline' : 'none';
       }
     }) ;
     </script>
