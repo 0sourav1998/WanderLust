@@ -223,10 +223,18 @@ nav {
   }
   .card img{
     height: 8rem;
-    width: 10rem;
-    gap: 1rem;
+    width: 18rem;
   }
-  
+  .card-body b{
+    margin-right: 2rem;
+  }
+  .col-2{
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .pcl{
+    width: 100%;
+  }
 }
 
 @media (min-width:490px) and (max-width:768px){
