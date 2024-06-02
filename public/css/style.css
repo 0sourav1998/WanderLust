@@ -1,3 +1,7 @@
+*{
+  margin: 0;
+  padding: 0;
+}
 body {
   font-family: "Plus Jakarta Sans", sans-serif !important;
   font-optical-sizing: auto;
@@ -119,6 +123,8 @@ nav {
 .review-border{
   border: none;
   background-color: lightgrey;
+  max-height: 300px;
+  overflow: auto;
 }
 .review{
   padding: 5px;
@@ -178,6 +184,13 @@ nav {
   display: inline;
 }
 
+.main-text{
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 1.5rem;
+  font-weight: bolder;
+  text-shadow: 1px 1px 2px #6674CC;
+}
+
 .btn-search{
   background-color: #ff9b9b;
   color: white;
@@ -189,6 +202,30 @@ nav {
   padding: 0.5rem 3rem 0.5rem 3rem !important;
 }
 
+.button{
+  background-color: #6674CC;
+  border: none;
+  width: 6rem ;
+}
+#btn{
+  border: none;
+  background-color: #904e4e;
+}
+
+#button{
+  background-color: #6674CC;
+  border: none;
+  padding-left : 1rem ;
+  margin-left: 0.5rem;
+}
+
+.login-btn{
+  margin-top: 1rem;
+  background-color: #6674CC;
+  border: none;
+  width: 9rem;
+  height: 3rem;
+}
 
 .container {
   width: auto;
@@ -200,12 +237,30 @@ nav {
   background-color: #f5f5f5;
 }
 
-/* img{
-  width: 28rem;
-  height: 18rem;
-} */
+.create{
+  border: none;
+  background-color: #6674CC;
+  margin-right: 1rem;
+}
 
-@media (max-width:490px){
+@media (max-width : 350px){
+  .card img{
+    width: 15rem;
+    height: 10rem;
+  }
+  #map{
+    width: 15rem;
+    height: 10rem;
+  }
+  .review-border{
+    max-height: 100px;
+    width: 250px;
+    overflow: auto;
+  }
+}
+
+
+@media (min-width : 350px) and (max-width:490px){
   .main-container{
     display: none;
   }
@@ -222,7 +277,7 @@ nav {
     height: 10rem;
   }
   .card img{
-    height: 8rem;
+    height: 12rem;
     width: 18rem;
   }
   .card-body b{
@@ -235,11 +290,20 @@ nav {
   .pcl{
     width: 100%;
   }
+  .review-border{
+    max-height: 150px;
+    width: 250px;
+    overflow: auto;
+  }
 }
 
 @media (min-width:490px) and (max-width:768px){
   .main-container{
     display: none;
+  }
+  .card img{
+    height: 16rem;
+    width: 20rem;
   }
   #map{
     width: 25rem;
@@ -269,5 +333,9 @@ nav {
     display: flex;
     flex-wrap: wrap;
     gap: 1rem;
+  }
+  .review-border{
+    max-height: 150px;
+    overflow: auto;
   }
 }

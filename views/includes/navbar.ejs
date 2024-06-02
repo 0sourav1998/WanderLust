@@ -5,7 +5,7 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div class="navbar-nav">
+        <div class="navbar-nav main-text">
           <a class="nav-link" href="/listings">All Listings</a>
         </div>
         <div class="ms-auto">
@@ -15,13 +15,13 @@
           </form>
         </div>
         <div class="navbar-nav ms-auto">
-          <a class="nav-link" href="/listings/new">Create New Wander</a>
+          <button class="create"><a class="nav-link" href="/listings/new"><i class="fa-solid fa-plus"></i>Create New Wander</a></button>
           <% if(!user){ %>
-            <a class="nav-link" href="/login"><b>Login</b></a>
-          <a class="nav-link" href="/Signup"><b>Signup</b></a>
+            <button class="button"><a class="nav-link" href="/login"><b>Login <i class="fa-solid fa-right-to-bracket"></i></b></a></button>
+          <button id="button"><a class="nav-link" href="/Signup"><b>Signup</b></a></button>
           <% } %>
           <% if(user){ %>
-          <a class="nav-link" href="/logout"><b>Logout</b></a>
+            <button id="btn"><a class="nav-link" href="/logout"><b>Logout <i class="fa-solid fa-right-from-bracket"></i></b></a></button>
           <% } %>
         </div>
 
