@@ -14,11 +14,11 @@
             <button class="btn-search" type="submit"><i class="fa-solid fa-magnifying-glass"></i>Search</button>
           </form>
         </div>
-        <div class="navbar-nav ms-auto">
-          <button class="create"><a class="nav-link" href="/listings/new"><i class="fa-solid fa-plus"></i>Create New Wander</a></button>
+        <div class="navbar-nav ms-aut ">
+          <button class="create"><a class="nav-link" href="/listings/new"><b>Create New</b></a></button>
           <% if(!user){ %>
             <button class="button"><a class="nav-link" href="/login"><b>Login <i class="fa-solid fa-right-to-bracket"></i></b></a></button>
-          <button id="button"><a class="nav-link" href="/Signup"><b>Signup</b></a></button>
+          <button class="button"><a class="nav-link" href="/Signup"><b>Signup</b></a></button>
           <% } %>
           <% if(user){ %>
             <button id="btn"><a class="nav-link" href="/logout"><b>Logout <i class="fa-solid fa-right-from-bracket"></i></b></a></button>
