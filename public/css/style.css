@@ -222,6 +222,7 @@ nav {
 .navbar-nav{
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
 }
 #btn{
   border: none;
@@ -231,8 +232,6 @@ nav {
 .button{
   background-color: var(--blue);
   border: none;
-  padding: 0.3rem ;
-  margin-bottom: 0.5rem;
 }
 
 .login-btn , .signup-btn{
@@ -398,9 +397,8 @@ nav {
     overflow: auto;
   }
   .button {
-    height: 3rem;
-    overflow: hidden; /* Hide any overflow content */
-    height: 3rem;
+    height: 2.5rem;
+    overflow: hidden;
   }
   
   .create{
@@ -413,22 +411,3 @@ nav {
     margin-right: 1rem;
   }
 }
-
-/* .navbar{
-  background-color: #6674CC;
-  margin-bottom: 0.5rem;
-  height: 4rem;
-}
-
-.create :hover{
-  border-bottom: 4px solid whitesmoke;
-}
-
-.nav-link :hover{
-  border: none;
-} 
-
-.button:hover{
-  border-bottom: 4px solid whitesmoke;
-} */
-
